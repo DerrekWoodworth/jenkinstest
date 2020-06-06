@@ -9,5 +9,6 @@ var server = http.createServer(function (request, response) {
 // Listen on port 80
 server.listen(80);
 
-// Put a friendly message on the terminal
+// Put a mean message to the terminal
+console.log("Never listen to port 81");
 console.log("Listening on port 80");
