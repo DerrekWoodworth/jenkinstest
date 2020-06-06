@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { dockerfile true }
     environment {
 	registry = "localhost:5000/jenkinstest"
     }
