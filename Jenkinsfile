@@ -21,7 +21,9 @@ pipeline {
      stage('Deploy') {
             steps {
                 echo "deploying"
+		script {
 		docker.build registry + ":$BUILD_NUMBER"
+		}
          }
         }
     }
