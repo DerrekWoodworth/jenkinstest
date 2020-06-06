@@ -6,6 +6,8 @@ pipeline {
             steps {
                 git 'https://github.com/DerrekWoodworth/jenkinstest.git/'
                 echo "building"
+		sh 'ls'
+
             }
         }
         stage('Test') {
