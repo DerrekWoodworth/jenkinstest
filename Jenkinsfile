@@ -3,7 +3,6 @@ pipeline {
     environment {
 	registry = "localhost:5000/jenkinstest"
     }
-    tools {nodejs "node"}
     stages {
         stage('Build') {
             steps {
