@@ -7,8 +7,6 @@ pipeline {
         stage('Build') {
             steps {
                 git 'https://github.com/DerrekWoodworth/jenkinstest.git/'
-                echo "building"
-		sh 'ls'
 
             }
         }
@@ -17,13 +15,11 @@ pipeline {
                 echo "testing"
          }
      }
-     stage('Deploy') {
-            steps {
-                echo "deploying"
-		script {
-		docker.build registry + ":$BUILD_NUMBER"
-		}
-         }
+      stage('Deploy') {
+        steps {
+          def customImage = docker.build("jenkinstest:${env.BUILD_ID}")
+          customImage.push()
         }
+      }
     }
 }
