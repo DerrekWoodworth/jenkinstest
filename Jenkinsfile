@@ -1,8 +1,4 @@
 pipeline {
-    agent { dockerfile true }
-    environment {
-	registry = "localhost:5000/jenkinstest"
-    }
     stages {
         stage('Build') {
             steps {
@@ -17,8 +13,10 @@ pipeline {
      }
       stage('Deploy') {
         steps {
-          def customImage = docker.build("jenkinstest:${env.BUILD_ID}")
-          customImage.push()
+	  docker.withRegistry('localhost:5000') {
+            def customImage = docker.build("jenkinstest:${env.BUILD_ID}")
+            customImage.push()
+	  }
         }
       }
     }
