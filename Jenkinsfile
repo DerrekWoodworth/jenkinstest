@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+	registry = "localhost:5000/jenkinstest"
+    }
     tools {nodejs "node"}
     stages {
         stage('Build') {
@@ -18,6 +21,7 @@ pipeline {
      stage('Deploy') {
             steps {
                 echo "deploying"
+		docker.build registry + ":$BUILD_NUMBER"
          }
         }
     }
